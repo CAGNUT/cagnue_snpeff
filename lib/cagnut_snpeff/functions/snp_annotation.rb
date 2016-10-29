@@ -7,6 +7,7 @@ module CagnutSnpeff
     def_delegators :'CagnutSnpeff.config', :annotation_params
 
     def initialize opts = {}
+      @order = sprintf '%02i', opts[:order]
       @input = opts[:input].nil? ? "#{opts[:dirs][:input]}/#{sample_name}.vcf" : opts[:input]
       @output = "#{opts[:dirs][:output]}/#{sample_name}_snpeff.vcf"
       @job_name = "#{prefix_name}_snpEff_#{sample_name}"
@@ -46,7 +47,7 @@ module CagnutSnpeff
     end
 
     def generate_script
-      script_name = 'snpeff_snp_annotation'
+      script_name = "#{@order}_snpeff_snp_annotation"
       file = File.join jobs_dir, "#{script_name}.sh"
       File.open(file, 'w') do |f|
         f.puts <<-BASH.strip_heredoc
