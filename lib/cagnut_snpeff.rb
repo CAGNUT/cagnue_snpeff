@@ -12,5 +12,6 @@ module CagnutSnpeff
 end
 
 require 'cagnut_snpeff/configuration'
+require 'cagnut_snpeff/check_tools'
 require 'cagnut_snpeff/base'
 require 'cagnut_snpeff/util'
